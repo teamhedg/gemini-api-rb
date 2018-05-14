@@ -15,7 +15,7 @@ describe Gemini::Client do
     }
 
     before do
-      stub_http("/positions", response.to_json, method: :post)
+      stub_http("/v1/positions", response.to_json, method: :post)
       @response = client.positions
     end
 
@@ -32,7 +32,7 @@ describe Gemini::Client do
     }
 
     before do
-      stub_http("/position/claim", response.to_json, method: :post)
+      stub_http("/v1/position/claim", response.to_json, method: :post)
       @response = client.claim_position(943715, 10)
     end
 

@@ -13,7 +13,7 @@ describe Gemini::Client do
     }
 
     before do
-      stub_http("/order/new", new_order.to_json, method: :post)
+      stub_http("/v1/order/new", new_order.to_json, method: :post)
       @new_order = client.new_order("btcusd",0.01, "exchange limit", "buy", 0.01)
     end
 
@@ -31,12 +31,12 @@ describe Gemini::Client do
         }],
         "status":"success"
       }
-    } 
+    }
 
     let(:orders){ [{symbol: "btcusd", amount: 0.01, price: 0.01, side: "buy"},
                    {symbol: "btcusd", amount: 0.01, price: 0.01, side: "buy"}] }
     before do
-      stub_http("/order/new/multi", multiple_orders.to_json, method: :post)
+      stub_http("/v1/order/new/multi", multiple_orders.to_json, method: :post)
       @orders = client.multiple_orders(orders: orders)
     end
 
@@ -50,7 +50,7 @@ describe Gemini::Client do
       let(:cancel_order){ { "id":446915287, "symbol":"btcusd" } }
 
       before do
-        stub_http("/order/cancel", cancel_order.to_json, method: :post)
+        stub_http("/v1/order/cancel", cancel_order.to_json, method: :post)
         @response = client.cancel_orders(446915287)
       end
 
@@ -62,7 +62,7 @@ describe Gemini::Client do
 
 
       before do
-        stub_http("/order/cancel/multi", response.to_json, method: :post)
+        stub_http("/v1/order/cancel/multi", response.to_json, method: :post)
         @response = client.cancel_orders([446915287, 123123123])
       end
 
@@ -73,14 +73,14 @@ describe Gemini::Client do
       let(:response) {{"result":"All orders cancelled"}}
 
       before do
-        stub_http("/order/cancel/all", response.to_json, method: :post)
+        stub_http("/v1/order/cancel/all", response.to_json, method: :post)
         @response = client.cancel_orders
       end
 
       it {expect(@response["result"]).to eq("All orders cancelled")}
     end
   end
-   
+
 
   context ".replace_order" do
     let(:response) {
@@ -91,13 +91,13 @@ describe Gemini::Client do
       }
     }
     before do
-      stub_http("/order/cancel/replace",response.to_json, method: :post)
+      stub_http("/v1/order/cancel/replace",response.to_json, method: :post)
       @response = client.replace_order(448411365, "btcusd", 0.01, :limit, :buy, 0.01)
     end
-    
+
     it { expect(@response["id"]).to eq(448411365) }
   end
- 
+
   context ".order_status" do
     let(:response) { {
       "id":448411153,
@@ -106,10 +106,10 @@ describe Gemini::Client do
       "avg_execution_price":"0.0" } }
 
     before do
-      stub_http("/order/status",response.to_json, method: :post)
+      stub_http("/v1/order/status",response.to_json, method: :post)
       @response = client.order_status(448411153)
     end
-    
+
     it { expect(@response["id"]).to eq(448411153) }
   end
 
@@ -118,10 +118,10 @@ describe Gemini::Client do
                       {"id":448411155, "price":"0.01"}] }
 
     before do
-      stub_http("/orders",response.to_json, method: :post)
+      stub_http("/v1/orders",response.to_json, method: :post)
       @response = client.orders
     end
-    
+
     it { expect(@response.size).to eq(2) }
     it { expect(@response[0]["id"]).to eq(448411153) }
 
