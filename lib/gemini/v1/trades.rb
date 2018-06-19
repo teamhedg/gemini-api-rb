@@ -9,9 +9,10 @@ module Gemini
     # @return [Array]
     # @example:
     #   client.trades
-    def trades(symbol="btcusd", params={})
-      check_params(params, %i{timestamp limit_trades})
-      get("trades/#{symbol}", params).body
+    def trades(symbol="BTCUSD", params={})
+      params.merge!(symbol: symbol)
+      check_params(params, %i{symbol timestamp limit_trades})
+      authenticated_post("mytrades", params: params).body
     end
 
     # Listen to the trades using websocket.
