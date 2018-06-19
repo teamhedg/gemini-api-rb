@@ -12,7 +12,7 @@ describe Gemini::Client do
   let(:json_deposit) { deposit.to_json }
 
   before do
-    stub_http("/v1/deposit/new",json_deposit , method: :post)
+    stub_http("/deposit/new",json_deposit , method: :post)
     @deposit = client.deposit("bitcoin", "exchange")
   end
 

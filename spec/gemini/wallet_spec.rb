@@ -7,7 +7,7 @@ describe Gemini::Client do
 
   context ".balances" do
     before do
-      stub_http("/v1/balances", response.to_json, method: :post)
+      stub_http("/balances", response.to_json, method: :post)
       @response = client.balances
     end
 
@@ -16,7 +16,7 @@ describe Gemini::Client do
 
   context "margin_infos" do
     before do
-      stub_http("/v1/margin_infos", response.to_json, method: :post)
+      stub_http("/margin_infos", response.to_json, method: :post)
       @response = client.margin_infos
     end
 
@@ -26,7 +26,7 @@ describe Gemini::Client do
   context "summary" do
     let(:response) { '{"trade_vol_30d":[{"curr":"BTC","vol":11.88696022},{"curr":"LTC","vol":0.0},{"curr":"ETH","vol":0.1},{"curr":"Total (USD)","vol":5027.63}],"funding_profit_30d":[{"curr":"USD","amount":0.0},{"curr":"BTC","amount":0.0},{"curr":"LTC","amount":0.0},{"curr":"ETH","amount":0.0}],"maker_fee":0.001,"taker_fee":0.002}' }
     before do
-      stub_http("/v1/summary", response, method: :post)
+      stub_http("/summary", response, method: :post)
       @response = client.summary
     end
 
@@ -35,7 +35,7 @@ describe Gemini::Client do
 
   context "transfer" do
     before do
-      stub_http("/v1/transfer", response.to_json, method: :post)
+      stub_http("/transfer", response.to_json, method: :post)
       @response = client.transfer(100, "USD", "1000", "1001")
     end
 
@@ -44,7 +44,7 @@ describe Gemini::Client do
 
   context "withdraw" do
     before do
-      stub_http("/v1/withdraw", response.to_json, method: :post)
+      stub_http("/withdraw", response.to_json, method: :post)
       @response = client.withdraw("bitcoin", "deposit", 10, address: "bitcoin address")
     end
 
@@ -53,7 +53,7 @@ describe Gemini::Client do
 
   context "key_info" do
     before do
-      stub_http("/v1/key_info", response.to_json, method: :post)
+      stub_http("/key_info", response.to_json, method: :post)
       @response = client.key_info
     end
 

@@ -27,3 +27,12 @@ require 'gemini/v1/wallet'
 require 'gemini/v1/positions'
 require 'gemini/v1/historical_data'
 require 'gemini/v1/margin_funding'
+
+# API Version 2
+require 'gemini/v2/stats'
+require 'gemini/v2/ticker'
+require 'gemini/v2/utils'
+require 'gemini/v2/personal'
+require 'gemini/v2/trading'
+require 'gemini/v2/margin'
+

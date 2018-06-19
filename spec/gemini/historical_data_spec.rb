@@ -10,7 +10,7 @@ describe Gemini::Client do
       }] }
 
     before do
-      stub_http("/v1/history", response.to_json, method: :post)
+      stub_http("/history", response.to_json, method: :post)
       @response = client.history
     end
 
@@ -25,7 +25,7 @@ describe Gemini::Client do
       }] }
 
     before do
-      stub_http("/v1/history/movements", response.to_json, method: :post)
+      stub_http("/history/movements", response.to_json, method: :post)
       @response = client.movements
     end
 
@@ -39,7 +39,7 @@ describe Gemini::Client do
       }] }
 
     before do
-      stub_http("/v1/mytrades", response.to_json, method: :post)
+      stub_http("/mytrades", response.to_json, method: :post)
       @response = client.mytrades("usdbtc")
     end
 

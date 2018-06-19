@@ -7,4 +7,4 @@ RSpec.shared_context "api requests" do
       to_return(status: status, headers: headers, body: body)
   end
 
-end
+end 

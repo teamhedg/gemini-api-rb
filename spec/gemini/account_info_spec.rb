@@ -16,7 +16,7 @@ describe Gemini::Client do
     let(:json_account_info) { account_info.to_json }
 
     before do
-      stub_http("/v1/account_infos",json_account_info, method: :post)
+      stub_http("/account_infos",json_account_info, method: :post)
       @account_info = client.account_info
     end
 
@@ -35,7 +35,7 @@ describe Gemini::Client do
     let(:json_fees) { fees.to_json }
 
     before do
-      stub_http("/v1/fees",json_fees, method: :post)
+      stub_http("/fees",json_fees, method: :post)
       @fees = client.fees
     end
 

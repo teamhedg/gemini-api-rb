@@ -24,3 +24,7 @@ describe Gemini::V1::TickerClient do
     it { expect(@ticker["bid"]).to eq("403.98") }
   end
 end
+
+describe Gemini::V2::TickerClient do
+end
+
